@@ -1,0 +1,5 @@
+read_liberty -lib test/simple.lib
+read_verilog test/bus.v
+hierarchy -top top
+opensta_net -liberty test/simple.lib -link
+opensta_net -source test/bus_edit_body.tcl

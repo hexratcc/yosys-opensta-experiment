@@ -1,0 +1,9 @@
+read_liberty -lib deps/OpenSTA/test/nangate45/Nangate45_typ.lib
+read_verilog deps/OpenSTA/network/test/network_hier_test.v
+hierarchy -top network_hier_test
+uniquify
+opensta_net -liberty deps/OpenSTA/test/nangate45/Nangate45_typ.lib -link
+opensta_net -sdc test/kh2.sdc -keep_hierarchy
+flatten
+select -assert-count 1 t:*sub2*
+select -assert-none t:*sub1*

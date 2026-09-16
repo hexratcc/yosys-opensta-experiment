@@ -1,0 +1,12 @@
+*.so
+deps/
+conformance/work/
+test/*_yosys.out
+test/*_yosys.log
+test/*_ref.out
+test/stress.diff
+test/kh_out.sdc
+test/editlog_out.txt
+test/handoff_out.v
+test/handoff_out.sdc
+test/handoff_yosys.out

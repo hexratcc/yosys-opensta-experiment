@@ -1,0 +1,8 @@
+read_liberty -lib test/simple.lib
+read_verilog test/opt.v
+hierarchy -top top
+opensta_net -liberty test/simple.lib -link
+opensta_net -source test/opt_sdc.tcl
+opt_merge -share_all
+opt_clean
+opensta_net -source test/opt_sdc.tcl

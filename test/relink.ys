@@ -1,0 +1,7 @@
+read_liberty -lib test/simple.lib
+read_verilog test/simple.v
+hierarchy -top top
+opensta_net -liberty test/simple.lib -link
+opensta_net -source test/m4a.tcl
+opensta_net -link
+opensta_net -source test/m4a.tcl

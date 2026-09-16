@@ -1,0 +1,8 @@
+read_liberty -lib test/simple.lib
+read_verilog test/top_a.v
+hierarchy -top a
+opensta_net -liberty test/simple.lib -link
+opensta_net -source test/top_count.tcl
+read_verilog test/top_b.v
+hierarchy -top b
+opensta_net -source test/top_count.tcl

@@ -1,0 +1,5 @@
+read_liberty -lib deps/OpenSTA/test/nangate45/Nangate45_typ.lib
+read_verilog test/stress.v
+hierarchy -top stress
+opensta_net -liberty deps/OpenSTA/test/nangate45/Nangate45_typ.lib -link
+opensta_net -source test/stress_body.tcl

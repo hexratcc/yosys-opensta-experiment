@@ -1,0 +1,8 @@
+# P0 handoff: constraints evaluated on RTLIL, then Verilog + SDC written out
+# for OpenSTA's own reader (test/handoff_ref.tcl replays them).
+read_liberty -lib test/simple.lib
+read_verilog test/simple.v
+hierarchy -top top
+opensta_net -liberty test/simple.lib -link
+opensta_net -source test/handoff.tcl
+write_verilog -noattr test/handoff_out.v

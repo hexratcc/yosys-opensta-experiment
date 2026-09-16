@@ -1,0 +1,10 @@
+read_verilog deps/yosys/tests/functional/picorv32.v
+read_liberty -lib -ignore_miss_func deps/OpenSTA/test/sky130hd/sky130hd_tt.lib
+synth -top picorv32
+dfflibmap -liberty deps/OpenSTA/test/sky130hd/sky130hd_tt.lib
+abc -liberty deps/OpenSTA/test/sky130hd/sky130hd_tt.lib
+opt_clean -purge
+opt_merge -share_all
+opt_clean -purge
+opensta_net -liberty deps/OpenSTA/test/sky130hd/sky130hd_tt.lib -link
+opensta_net -source test/picorv32.tcl

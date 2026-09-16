@@ -1,0 +1,7 @@
+33,34c33
+< net: alias1
+< net: alias2
+---
+> net: weird/name
+49d47
+< net: weird/name
