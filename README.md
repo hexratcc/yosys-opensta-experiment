@@ -23,10 +23,10 @@ OpenROAD fork of OpenSTA built PIC without IPO:
 
     cmake -B build . -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_POSITION_INDEPENDENT_CODE=ON
 
-Then, with `nix-shell` for the toolchain:
+Then inside the toolchain shell (tcl, zlib, cudd; `shell.nix` has them):
 
-    make YOSYS_SRC=../yosys OPENSTA=../OpenSTA
-    make test
+    nix-shell --run "make YOSYS_SRC=../yosys OPENSTA=../OpenSTA"
+    nix-shell --run "make test"
 
 ### Use
 

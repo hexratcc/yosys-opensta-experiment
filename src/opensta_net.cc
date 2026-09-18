@@ -50,8 +50,6 @@ struct YosysStaReport : public sta::ReportTcl {
 
 struct YosysSta : public sta::Sta {
 	ysta::YosysNetwork *yosys_network = nullptr;
-	// Every edit since boot, by name: the flow-end record Google's 2027
-	// goals ask for ("all the edits you make to the design").
 	std::unique_ptr<EditLog> edit_log;
 	// Iterative flows re-run the same script; a re-read would pile up
 	// duplicate libraries in the scene (Sta never clears them).

@@ -18,9 +18,16 @@ STA_INC = -I$(STA_ROOT)/include -I$(STA_ROOT)/include/sta -I$(STA_ROOT)/build/in
 
 SRCS = src/opensta_net.cc src/yosys_network.cc
 
+# tcl.h, zlib.h and cudd are not part of yosys-config's flags; they come from
+# shell.nix (or your system's tcl, zlib and cudd development packages).
+HAVE_TOOLCHAIN := $(shell printf '#include <tcl.h>\n#include <zlib.h>\n' | $(CXX) -E -x c++ - > /dev/null 2>&1 && echo yes)
+
 all: opensta_net.so
 
 opensta_net.so: $(SRCS) src/yosys_network.hh $(STA_LIBS) deps
+ifneq ($(HAVE_TOOLCHAIN),yes)
+	$(error tcl.h or zlib.h not found: build inside the toolchain shell, e.g. nix-shell --run "make $(MAKECMDGOALS)")
+endif
 	$(YOSYS_CONFIG) --build $@ $(SRCS) $(STA_INC) $(STA_LIBS) -lcudd -lz -ltcl
 
 # Stable paths for the .ys/.tcl test files, whatever the checkouts are called.
